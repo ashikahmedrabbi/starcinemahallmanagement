@@ -33,12 +33,18 @@ class Hall:
         if id not in show_id:
             print("Id Not Found.")
             return
-        if self.seats[id][rows][cols] == 'Y':
-            print("Seat is already Sell.")
-            return
-        self.seats[id][rows][cols] = 'Y'
-        print("Seat Buy successfully.")
+        
+        for row, col in seat_list:
+            if row < 0 or row >= self.rows or col < 0 or col >= self.cols:
+                print('No seat Found')
+                return
 
+            if self.seats[id][row][col] == 'Y':
+                print("Seat Already Soled.")
+                return
+
+            self.seats[id][row][col] = 'Y'
+            print('Seat booking successful!')
     def entry_show(self, id, movieName, time):
         show_time = (id, movieName, time)
         self.show_list.append(show_time)
